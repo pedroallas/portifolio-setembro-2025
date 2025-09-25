@@ -1,0 +1,39 @@
+[build]
+  # Comando de build
+  command = "npm run build"
+  
+  # Diretório de saída do build
+  publish = "out"
+
+[build.environment]
+  # Versão do Node.js
+  NODE_VERSION = "18"
+  # Configuração para Next.js
+  NPM_FLAGS = "--legacy-peer-deps"
+
+# Configurações de redirect para SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers para otimização
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache para assets estáticos
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache para imagens
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
