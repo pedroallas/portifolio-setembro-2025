@@ -16,37 +16,38 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 const projects = [
   {
-    title: "Sistema de Gestão Empresarial",
+    title: "AgendaTech - Gestão Escolar",
     description:
-      "Plataforma completa para gestão de recursos empresariais com dashboard interativo e relatórios em tempo real.",
-    image: "/modern-business-management-dashboard-interface.jpg",
-    tags: ["React", "Node.js", "PostgreSQL", "AWS"],
-    github: "#",
-    demo: "#",
+      "Solução completa para gerenciamento de agendamentos de recursos em instituições educacionais com interface intuitiva e funcionalidades avançadas.",
+    image: "/agenda-tech-escolar.jpg",
+    tags: ["Next.js 15", "TypeScript", "Prisma", "PostgreSQL", "NextAuth"],
+    github:
+      "https://github.com/pedroallas/agendatechescolar-em-producao-gni-september-2025",
+    demo: "https://agendatechescolar-production.vercel.app/",
     featured: true,
-    stats: { users: "10K+", performance: "99.9%" },
+    stats: { schools: "50+", bookings: "10K+" },
   },
   {
-    title: "Aplicativo de Ensino de Matemática",
+    title: "Duallas Donalds - Sistema de Pedidos",
     description:
-      "App educacional interativo com exercícios adaptativos e visualizações matemáticas dinâmicas.",
-    image: "/educational-math-learning-app-interface.jpg",
-    tags: ["React Native", "Python", "Django", "MongoDB"],
-    github: "#",
-    demo: "#",
+      "Sistema de gerenciamento de pedidos de restaurante com autenticação, cardápio interativo, carrinho de compras e histórico de pedidos completo.",
+    image: "/duallas-donalds-project.jpg",
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    github: "https://github.com/pedroallas/pad-port-donalds",
+    demo: "https://pad-port-donalds-vkts.vercel.app/duallas-donalds",
     featured: true,
-    stats: { students: "5K+", engagement: "95%" },
+    stats: { orders: "500+", uptime: "99.9%" },
   },
   {
-    title: "API de Análise de Dados",
+    title: "Fundamentos da Fé - Site Educacional",
     description:
-      "Sistema robusto para processamento e análise de grandes volumes de dados com machine learning.",
-    image: "/data-analytics-api-dashboard-with-charts.jpg",
-    tags: ["Python", "FastAPI", "Docker", "Redis"],
-    github: "#",
-    demo: null,
+      "Site educacional moderno e interativo para estudos bíblicos com módulos estruturados, material em PDF e acompanhamento de progresso.",
+    image: "/fundamentos-da-fe-project.jpg",
+    tags: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Radix UI"],
+    github: "https://github.com/pedroallas/fundamentosdafe-comunidade",
+    demo: "https://fundamentosdafe.netlify.app/",
     featured: false,
-    stats: { requests: "1M+", uptime: "99.8%" },
+    stats: { modules: "12+", students: "200+" },
   },
   {
     title: "E-commerce Moderno",
@@ -219,6 +220,7 @@ export function ProjectsSection() {
                       size="sm"
                       variant="outline"
                       className="border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground bg-transparent min-w-[100px] px-4"
+                      onClick={() => window.open(project.github, "_blank")}
                     >
                       <Github className="w-4 h-4 flex-shrink-0" />
                       <span className="whitespace-nowrap">GitHub</span>
@@ -227,6 +229,7 @@ export function ProjectsSection() {
                       <MagneticButton
                         size="sm"
                         className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg shadow-accent/25 min-w-[90px] px-4"
+                        onClick={() => window.open(project.demo, "_blank")}
                       >
                         <ExternalLink className="w-4 h-4 flex-shrink-0" />
                         <span className="whitespace-nowrap">Demo</span>
