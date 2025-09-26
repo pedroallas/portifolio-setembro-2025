@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { cn } from "@/lib/utils"
-import { Menu, X, Code2 } from "lucide-react"
-import { ScrollReveal } from "@/components/ui/scroll-reveal"
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import Image from "next/image";
 
 const navItems = [
   { href: "#inicio", label: "Início" },
@@ -11,47 +12,50 @@ const navItems = [
   { href: "#servicos", label: "Serviços" },
   { href: "#projetos", label: "Projetos" },
   { href: "#contato", label: "Contato" },
-]
+];
 
 export function EnhancedNavigation() {
-  const [activeSection, setActiveSection] = useState("inicio")
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [scrollProgress, setScrollProgress] = useState(0)
+  const [activeSection, setActiveSection] = useState("inicio");
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const progress = (scrollTop / docHeight) * 100
+      const scrollTop = window.scrollY;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
 
-      setScrollProgress(progress)
-      setIsScrolled(scrollTop > 50)
+      setScrollProgress(progress);
+      setIsScrolled(scrollTop > 50);
 
       // Update active section based on scroll position
-      const sections = navItems.map((item) => item.href.substring(1))
+      const sections = navItems.map((item) => item.href.substring(1));
       const currentSection = sections.find((section) => {
-        const element = document.getElementById(section)
+        const element = document.getElementById(section);
         if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
         }
-        return false
-      })
+        return false;
+      });
 
       if (currentSection) {
-        setActiveSection(currentSection)
+        setActiveSection(currentSection);
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleNavClick = (href: string) => {
-    setIsMobileMenuOpen(false)
-    document.getElementById(href.substring(1))?.scrollIntoView({ behavior: "smooth" })
-  }
+    setIsMobileMenuOpen(false);
+    document
+      .getElementById(href.substring(1))
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <>
@@ -66,17 +70,30 @@ export function EnhancedNavigation() {
       <nav
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          isScrolled ? "nav-blur border-b border-border/50 shadow-lg shadow-background/20" : "bg-transparent",
+          isScrolled
+            ? "nav-blur border-b border-border/50 shadow-lg shadow-background/20"
+            : "bg-transparent"
         )}
       >
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Enhanced logo */}
-            <div className="flex items-center gap-2 cursor-pointer group" onClick={() => handleNavClick("#inicio")}>
-              <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Code2 className="w-5 h-5 text-accent-foreground" />
+            <div
+              className="flex items-center gap-2 cursor-pointer"
+              onClick={() => handleNavClick("#inicio")}
+            >
+              <div className="w-8 h-8 flex items-center justify-center">
+                <Image
+                  src="/logo-pedroallas.svg"
+                  alt="Pedro Allas Logo"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8"
+                />
               </div>
-              <span className="text-xl font-bold gradient-text">Pedro Allas</span>
+              <span className="text-xl font-bold gradient-text">
+                Pedro Allas
+              </span>
             </div>
 
             {/* Desktop Navigation with enhanced effects */}
@@ -89,11 +106,11 @@ export function EnhancedNavigation() {
                     "text-sm font-medium transition-all duration-300 hover:text-accent relative group px-3 py-2 rounded-lg",
                     activeSection === item.href.substring(1)
                       ? "text-accent bg-accent/10"
-                      : "text-muted-foreground hover:bg-accent/5",
+                      : "text-muted-foreground hover:bg-accent/5"
                   )}
                 >
                   {item.label}
-                  
+
                   {/* Hover glow effect */}
                   <div className="absolute inset-0 bg-accent/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
                 </button>
@@ -109,13 +126,17 @@ export function EnhancedNavigation() {
                 <Menu
                   className={cn(
                     "w-6 h-6 absolute transition-all duration-300",
-                    isMobileMenuOpen ? "opacity-0 rotate-180" : "opacity-100 rotate-0",
+                    isMobileMenuOpen
+                      ? "opacity-0 rotate-180"
+                      : "opacity-100 rotate-0"
                   )}
                 />
                 <X
                   className={cn(
                     "w-6 h-6 absolute transition-all duration-300",
-                    isMobileMenuOpen ? "opacity-100 rotate-0" : "opacity-0 -rotate-180",
+                    isMobileMenuOpen
+                      ? "opacity-100 rotate-0"
+                      : "opacity-0 -rotate-180"
                   )}
                 />
               </div>
@@ -126,18 +147,24 @@ export function EnhancedNavigation() {
           <div
             className={cn(
               "md:hidden overflow-hidden transition-all duration-500 ease-out",
-              isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
+              isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
             )}
           >
             <div className="py-4 border-t border-border/50 mt-4">
               <div className="flex flex-col space-y-2">
                 {navItems.map((item, index) => (
-                  <ScrollReveal key={item.href} direction="right" delay={index * 50}>
+                  <ScrollReveal
+                    key={item.href}
+                    direction="right"
+                    delay={index * 50}
+                  >
                     <button
                       onClick={() => handleNavClick(item.href)}
                       className={cn(
                         "text-left text-sm font-medium transition-all duration-300 hover:text-accent p-3 rounded-lg hover:bg-accent/10",
-                        activeSection === item.href.substring(1) ? "text-accent bg-accent/10" : "text-muted-foreground",
+                        activeSection === item.href.substring(1)
+                          ? "text-accent bg-accent/10"
+                          : "text-muted-foreground"
                       )}
                     >
                       {item.label}
@@ -150,5 +177,5 @@ export function EnhancedNavigation() {
         </div>
       </nav>
     </>
-  )
+  );
 }

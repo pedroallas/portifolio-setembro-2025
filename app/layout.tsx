@@ -17,7 +17,9 @@ export const metadata: Metadata = {
   title: "Pedro Allas - Engenheiro de Software & Professor de Matemática",
   description:
     "Portfolio profissional de Pedro Allas - Engenheiro de Software, Analista e Desenvolvedor de Sistemas, e Professor de Matemática.",
-  generator: "v0.app",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
