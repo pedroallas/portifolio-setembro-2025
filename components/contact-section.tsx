@@ -30,17 +30,33 @@ export function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      // Submeter para Netlify Forms
+      const formElement = e.target as HTMLFormElement;
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(formElement) as any).toString(),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 3000);
+      if (response.ok) {
+        setIsSubmitted(true);
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({ name: "", email: "", subject: "", message: "" });
+        }, 3000);
+      } else {
+        throw new Error("Erro no envio");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar formulário:", error);
+      alert(
+        "Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente pelo email."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -116,7 +132,24 @@ export function ContactSection() {
               Envie uma Mensagem
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
+              {/* Campo obrigatório para Netlify Forms */}
+              <input type="hidden" name="form-name" value="contact" />
+
+              {/* Honeypot para spam protection */}
+              <div style={{ display: "none" }}>
+                <label>
+                  Don't fill this out if you're human:
+                  <input name="bot-field" />
+                </label>
+              </div>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label
