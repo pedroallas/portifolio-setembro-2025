@@ -1,13 +1,32 @@
 # 🚀 Pedro Allas - Portfolio Profissional
 
-[![Deploy Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://app.netlify.com/sites/your-site-name/deploys)
+<div align="center">
+
 [![Next.js](https://img.shields.io/badge/Next.js-14.2.16-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4+-38bdf8)](https://tailwindcss.com/)
 
+</div>
+
 ## 📖 Sobre o Projeto
 
 Portfolio profissional moderno e responsivo desenvolvido para Pedro Allas, Engenheiro de Software e Professor de Matemática. O projeto demonstra expertise técnica através de uma interface elegante, interativa e otimizada para performance.
+
+## ✨ Preview
+
+<div align="center">
+
+![Portfolio Hero](./public/portifolio-inicio.png)
+
+_Tela inicial do portfolio_
+
+<br>
+
+![Navegação Completa](./public/portifolio.gif)
+
+_Experiência de navegação_
+
+</div>
 
 ### ✨ Características Principais
 
@@ -252,7 +271,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ---
 
 <div align="center">
-  <p>Feito com ❤️ por Pedro Allas</p>
+  <p>Feito por Pedro Allas</p>
   <p>
     <a href="#top">🔼 Voltar ao topo</a>
   </p>
